@@ -124,7 +124,11 @@ Table Required for the Project
   Funcationalities related with the user `LogIn, SignUp, ForgotPassword, UnlockAccount`.
 
 - **EnquiryController.java**  
-  Funcationalities related with the `Enquiry`.  
+  Funcationalities related with the `Enquiry`. 
+
+## v) Runner Class [Used to load the data to database table.]
+
+- **DataLoader.java** 
 
 
 
