@@ -42,3 +42,35 @@ Table Required for the Project
 | STATUS_ID    | INTEGER   | PRIMARY KEY (PK)   | AUTO_INCREMENT     |
 | STATUS_NAME  | VARCHAR   |                   |                    |
 
+
+# Java Component Requirements
+
+## I) Persistence Layer Component [Database Layer]
+
+### 1. Entity Classes
+- **AdminDetail.java**  
+  Represents the `AdminDetail` entity.
+
+- **StudentEnquiries.java**  
+  Represents the `StudentEnquiries` entity.
+
+- **Course.java**  
+  Represents the `Course` entity.
+
+- **EnquiryStatus.java**  
+  Represents the `EnquiryStatus` entity.
+
+### 2. Repository Interfaces
+- **AdminDetailRepository.java**  
+  Interface for performing operations on the `AdminDetail` table.
+
+- **StudentEnquiriesRepository.java**  
+  Interface for performing operations on the `StudentEnquiries` table.
+
+- **CourseRepository.java**  
+  Interface for performing operations on the `Course` table.
+
+- **EnquiryStatusRepository.java**  
+  Interface for performing operations on the `EnquiryStatus` table.
+
+
