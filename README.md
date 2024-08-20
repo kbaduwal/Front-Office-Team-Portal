@@ -106,7 +106,7 @@ Table Required for the Project
   Implemention abstract method of the `UserService` interface.
 
 - **EnquiryServiceImpl.java**  
-  Implemention abstract method of the `Enquiry` interface.
+  Implemention abstract method of the `EnquiryService` interface.
 
 
 ## IV) Helper Layer Component [Utility Classes]
