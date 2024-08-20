@@ -127,6 +127,7 @@ Table Required for the Project
   Funcationalities related with the `Enquiry`.  
 
 
+
 # UI [Pages]
 - **index.html** 
 - **login.html** 
