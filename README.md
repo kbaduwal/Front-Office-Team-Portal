@@ -12,7 +12,6 @@ Table Required for the Project
 | USER_ID      | INTEGER   | PRIMARY KEY (PK)   | AUTO_INCREMENT     |
 | NAME         | VARCHAR   |                   |                    |
 | EMAIL        | VARCHAR   | UNIQUE             |                    |
-| PHNO         | VARCHAR   |                   |                    |
 | PHNO         | INTEGER   | UNIQUE             |                    |
 | PWD          | VARCHAR   |                   |                    |
 | ACC_STATUS   | VARCHAR   |                   | DEFAULT: 'LOCKED'  |
@@ -48,16 +47,16 @@ Table Required for the Project
 ## I) Persistence Layer Component [Database Layer]
 
 ### 1. Entity Classes
-- **AdminDetail.java**  
+- **AdminDetailEntity.java**  
   Represents the `AdminDetail` entity.
 
-- **StudentEnquiries.java**  
+- **StudentEnquiriesEntity.java**  
   Represents the `StudentEnquiries` entity.
 
-- **Course.java**  
+- **CourseEntity.java**  
   Represents the `Course` entity.
 
-- **EnquiryStatus.java**  
+- **EnquiryStatusEntity.java**  
   Represents the `EnquiryStatus` entity.
 
 ### 2. Repository Interfaces
@@ -72,5 +71,60 @@ Table Required for the Project
 
 - **EnquiryStatusRepository.java**  
   Interface for performing operations on the `EnquiryStatus` table.
+
+## II) DTO Layer [Bindind Form Data/ Binding Layer]  
+
+- **LoginForm.java**  
+  Capturing the data from the `Login` Form.
+
+- **SignUpForm.java**  
+  Capturing the data from the `SignUp` Form.
+
+- **UnlockForm.java**  
+  Capturing the data from the `Unlock` Form.
+
+- **DashBoardResponse.java**  
+  Capturing the data from the `Dashboard` of the admin.
+
+- **EnquiryForm.java**  
+  Capturing the data from the `Enqury` Form which is modified by admin.
+
+- **EnquirySearchCriteria.java**  
+  Capturing the data from the `DropDown` filter.
+
+## III) Service Layer Component [Business Logic Layer]
+
+### 1. Service Interface
+- **UserService.java**  
+  Deals with `Login, SignUp, UnlockAccount, ForgotPassword` interface.
+
+- **EnquiryService.java**  
+  Deals with `AddingEnquiry, GettingEnquiry, Edit/Update` interface.
+
+### 2. Implent Interfaces
+- **UserServiceImpl.java**  
+  Implemention abstract method of the `UserService` interface.
+
+- **EnquiryServiceImpl.java**  
+  Implemention abstract method of the `Enquiry` interface.
+
+
+## IV) Helper Layer Component [Utility Classes]
+- **PasswordUtils.java** 
+
+- **EmailUtils.java**  
+
+
+## III) Controller Layer Component [Taking Request, Giving Response]
+
+- **IndexController.java**  
+  Used to load `Home Page` only.
+
+- **UserController.java**  
+  Funcationalities related with the user `LogIn, SignUp, ForgotPassword, UnlockAccount`.
+
+- **EnquiryController.java**  
+  Funcationalities related with the `Enquiry`.  
+
 
 
