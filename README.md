@@ -115,7 +115,7 @@ Table Required for the Project
 - **EmailUtils.java**  
 
 
-## III) Controller Layer Component [Taking Request, Giving Response]
+## v) Controller Layer Component [Taking Request, Giving Response]
 
 - **IndexController.java**  
   Used to load `Home Page` only.
