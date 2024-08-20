@@ -127,4 +127,16 @@ Table Required for the Project
   Funcationalities related with the `Enquiry`.  
 
 
+# UI [Pages]
+- **index.html** 
+- **login.html** 
+- **signup.html** 
+- **unlock.html** 
+- **forgotPassword.html** 
+- **dashboard.html** 
+- **addEnquiry.html** 
+- **viewEnquiry.html** 
+- **errorPage.html** 
+
+
 
