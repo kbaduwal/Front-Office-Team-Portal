@@ -126,9 +126,19 @@ Table Required for the Project
 - **EnquiryController.java**  
   Funcationalities related with the `Enquiry`. 
 
-## v) Runner Class [Used to load the data to database table.]
+## vi) Runner Class [Used to load the data to database table.]
 
 - **DataLoader.java** 
+
+# Types of DB Table
+
+- **Transactional Table**  
+  To perform Insert/Update/Delete/Retrieve.
+
+- **Non-Transactional/Static Table**  
+  Only to retrive the data.
+
+Note: We can insert data into static tables using insert queries directly (We can use runner also.)  
 
 
 
