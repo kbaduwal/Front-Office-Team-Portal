@@ -1,7 +1,7 @@
 package in.kb.repo;
 
-import in.kb.entity.EnquiryStatus;
+import in.kb.entity.EnquiryStatusEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface EnquiryStatusRepository extends JpaRepository<EnquiryStatus, Integer> {
+public interface EnquiryStatusRepository extends JpaRepository<EnquiryStatusEntity, Integer> {
 }
