@@ -20,11 +20,10 @@ public class UserController {
     public String unlockPage() {
         return "unlock";
     }
-    @GetMapping("/forgot")
+
+    @GetMapping("/forgotPwd")
     public String forgotPwdPage() {
         return "forgotPwd";
     }
-
-
 
 }
