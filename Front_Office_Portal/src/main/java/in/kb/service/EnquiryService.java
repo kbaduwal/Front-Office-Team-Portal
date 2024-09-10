@@ -10,6 +10,7 @@ public interface EnquiryService {
     public List<String> getCourseName();
     public List<String> getEnqStatus();
     public DashBoardResponse getDashboardData(Integer userId);
-    public String addEnquiry(EnquiryForm form);
+    public String upsertEnquiry(EnquiryForm form);
     public List<EnquiryForm> getEnquiries(Integer userID, EnquirySearchCriteria criteria);
+    public EnquiryForm getEnquiry(Integer enqId);
 }
