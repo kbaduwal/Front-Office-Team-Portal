@@ -21,5 +21,5 @@ public class StudentEnquiriesEntity {
     Date createdDate;
     Date updatedDate;
    @JoinColumn(name = "userId")
-    String userId;
+    Integer userId;
 }
