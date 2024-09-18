@@ -13,7 +13,7 @@ public class UserDtlsEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer userId;
-    String username;
+    String name;
     @Column(unique = true)
     String email;
     @Column(unique = true)

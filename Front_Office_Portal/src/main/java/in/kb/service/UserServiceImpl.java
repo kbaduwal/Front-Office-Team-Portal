@@ -27,6 +27,11 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public boolean signUp(SignUpForm form) {
+        UserDtlsEntity user = userDtlsRepo.findByEmail(form.getEmail());
+        if(user != null){
+            return false;
+        }
+
         //TODO: Copy data from binding object to entity object
         UserDtlsEntity entity = new UserDtlsEntity();
         BeanUtils.copyProperties(form,entity);
@@ -47,10 +52,11 @@ public class UserServiceImpl implements UserService{
         StringBuffer body = new StringBuffer("");
         body.append("Temporary Password: "+tempPwd);
         body.append("<br/>");
-        body.append("<a href=\"unlock?email="+to+"\">Click here to unlock the account </a>");
+        body.append("<a href=\"http://localhost:8080/unlock?email=" + to + "\">Click here to unlock the account</a>");
+
         emailUtils.sendEmail(to,subject,body.toString());
 
-        return false;
+        return true;
     }
 
     @Override

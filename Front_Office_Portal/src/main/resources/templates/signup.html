@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="www.thymeleaf.org">
 
 <head>
 <meta charset="UTF-8" />
@@ -82,31 +82,36 @@
 										<h4 class="mt-1 mb-5 pb-1"></h4>
 									</div>
 
-									<form>
+									<!-- Success message, shown only if succMsg is not null -->
+									<p th:if="${succMsg != null}" th:text="${succMsg}" class="text-success"></p>
+
+									<!-- Error message, shown only if errMsg is not null -->
+									<p th:if="${errMsg != null}" th:text="${errMsg}" class="text-danger"></p>
+
+
+									<form th:action="@{/signup}" th:object="${user}" method="POST">
 										<p>Please create account here</p>
 
 										<div class="form-outline mb-4">
-											<input type="email" id="form2Example11" class="form-control"
-												placeholder="Phone number or email address" /> <label
+											<input type="text" id="form2Example11" class="form-control"
+												placeholder="email" th:field="*{name}"/> <label
 												class="form-label" for="form2Example11">Name</label>
 										</div>
 
 										<div class="form-outline mb-4">
-											<input type="password" id="form2Example22"
-												class="form-control" /> <label class="form-label"
+											<input type="email" id="form2Example22"
+												class="form-control" th:field="*{email}"/> <label class="form-label"
 												for="form2Example22">Email</label>
 										</div>
 
 										<div class="form-outline mb-4">
-											<input type="password" id="form2Example22"
-												class="form-control" /> <label class="form-label"
+											<input type="text" id="form2Example22"
+												class="form-control" th:field="*{phoneNumber}"/> <label class="form-label"
 												for="form2Example22">Phno</label>
 										</div>
 
 										<div class="text-center pt-1 mb-5 pb-1">
-											<a href="unlock"
-												class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3"
-												type="button">Sign Up</a>
+											<input type="submit" value="Sign Up" class="btn btn-outline-danger"/>
 										</div>
 
 										<div
