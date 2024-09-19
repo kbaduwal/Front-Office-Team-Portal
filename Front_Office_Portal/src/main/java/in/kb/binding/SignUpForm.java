@@ -1,5 +1,5 @@
 package in.kb.binding;
-
+//Entity class variable and Binding class variable name should be same
 import lombok.Data;
 
 @Data

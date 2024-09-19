@@ -14,19 +14,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserServiceImpl implements UserService{
 
-    @Autowired
-    private UserDtlsRepository userDtlsRepo;
 
-    @Autowired
-    private EmailUtils emailUtils;
-
-    @Override
-    public String login(LoginForm form) {
-        return "";
-    }
 
     @Override
     public boolean signUp(SignUpForm form) {
+        //Checking whether that mail have been already used or not
         UserDtlsEntity user = userDtlsRepo.findByEmail(form.getEmail());
         if(user != null){
             return false;
@@ -61,11 +53,32 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public boolean unlockAccount(UnlockForm form) {
-        return false;
+
+        UserDtlsEntity entity = userDtlsRepo.findByEmail(form.getEmail());
+
+        if(entity.getPassword().equals(form.getTempPwd())){
+            entity.setPassword(form.getNewPwd());
+            entity.setAccountStatus("UnLocked");
+            userDtlsRepo.save(entity);
+            return true;
+        }else {
+            return false;
+        }
     }
 
     @Override
     public String forgotPwd(String email) {
+        return "";
+    }
+
+    @Autowired
+    private UserDtlsRepository userDtlsRepo;
+
+    @Autowired
+    private EmailUtils emailUtils;
+
+    @Override
+    public String login(LoginForm form) {
         return "";
     }
 }
