@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="www.thymeleaf.org">
 
 <head>
 <meta charset="UTF-8" />
@@ -82,25 +82,26 @@
 										<h4 class="mt-1 mb-5 pb-1"></h4>
 									</div>
 
-									<form>
+									<form th:action="@{/login}" th:object="${loginForm}" method="POST">
 										<p>Please login to your account</p>
 
 										<div class="form-outline mb-4">
 											<input type="email" id="form2Example11" class="form-control"
-												placeholder="Phone number or email address" /> <label
-												class="form-label" for="form2Example11">Username</label>
+												placeholder="email" th:field="*{email}" /> <label
+												class="form-label" for="form2Example11">Email</label>
 										</div>
 
 										<div class="form-outline mb-4">
 											<input type="password" id="form2Example22"
-												class="form-control" /> <label class="form-label"
+												class="form-control" th:field="*{pwd}" /> <label class="form-label"
 												for="form2Example22">Password</label>
 										</div>
 
 										<div class="text-center pt-1 mb-5 pb-1">
-											<a href="dashboard"
+											<input type="submit"
 												class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3"
-												type="button">Log in</a>
+												   value="Login"
+												/>
 											<a class="text-muted" href="forgot">Forgot password?</a>
 										</div>
 

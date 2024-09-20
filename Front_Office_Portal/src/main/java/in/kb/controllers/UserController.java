@@ -1,5 +1,6 @@
 package in.kb.controllers;
 
+import in.kb.binding.LoginForm;
 import in.kb.binding.SignUpForm;
 import in.kb.binding.UnlockForm;
 import in.kb.service.UserService;
@@ -63,14 +64,20 @@ public class UserController {
         }else{
             model.addAttribute("errMsg","New pwd and pwd should be same");
         }
-
-
-
         return "unlock";
     }
 
     @GetMapping("/login")
-    public String loginPage() {
+    public String loginPage(Model model) {
+        //Login Page will be loaded
+        model.addAttribute("loginForm", new LoginForm());
+        return "login";
+    }
+
+    @PostMapping("/login")
+    public String login(@ModelAttribute("loginForm") LoginForm loginForm, Model model) {
+        System.out.println(loginForm);
+
         return "login";
     }
 
