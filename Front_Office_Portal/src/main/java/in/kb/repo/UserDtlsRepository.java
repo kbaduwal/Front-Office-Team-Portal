@@ -7,4 +7,6 @@ public interface UserDtlsRepository extends JpaRepository<UserDtlsEntity, Intege
     //Checking whether that mail have been already used or not
     public UserDtlsEntity findByEmail(String email);
 
+    public UserDtlsEntity findByEmailAndPassword(String email, String password);
+
 }

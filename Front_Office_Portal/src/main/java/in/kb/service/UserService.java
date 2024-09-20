@@ -6,6 +6,7 @@ import in.kb.binding.UnlockForm;
 
 public interface UserService {
     public boolean signUp(SignUpForm form);
+
     public boolean unlockAccount(UnlockForm form);
 
     public String login(LoginForm form);

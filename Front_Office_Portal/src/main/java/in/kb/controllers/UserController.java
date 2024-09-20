@@ -76,7 +76,19 @@ public class UserController {
 
     @PostMapping("/login")
     public String login(@ModelAttribute("loginForm") LoginForm loginForm, Model model) {
-        System.out.println(loginForm);
+
+        String status = userService.login(loginForm);
+
+        //If data which are accepted from the logInForm are correct we will get the success message-
+        // It will redirect us to dashboard
+        if(status.contains("success")){
+            //redirect request to DashBoard method
+            //return "dashboard";
+            return "redirect:/dashboard";
+        }
+
+        //If status is not success we will get the reason of why it is un-success
+        model.addAttribute("errMsg", status);
 
         return "login";
     }

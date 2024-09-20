@@ -8,6 +8,7 @@ public class EnquiryController {
 
     @GetMapping("/dashboard")
     public String dashboardPage(){
+        //Todo: Logic to fetch data for dashboard
         return "dashboard";
     }
 

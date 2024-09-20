@@ -82,6 +82,8 @@
 										<h4 class="mt-1 mb-5 pb-1"></h4>
 									</div>
 
+									<p th:text="${errMsg}" class="text-danger" />
+
 									<form th:action="@{/login}" th:object="${loginForm}" method="POST">
 										<p>Please login to your account</p>
 
@@ -93,7 +95,7 @@
 
 										<div class="form-outline mb-4">
 											<input type="password" id="form2Example22"
-												class="form-control" th:field="*{pwd}" /> <label class="form-label"
+												class="form-control" th:field="*{password}" /> <label class="form-label"
 												for="form2Example22">Password</label>
 										</div>
 

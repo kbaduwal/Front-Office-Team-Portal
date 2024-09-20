@@ -14,6 +14,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserServiceImpl implements UserService{
 
+    @Autowired
+    private UserDtlsRepository userDtlsRepo;
+
+    @Autowired
+    private EmailUtils emailUtils;
 
 
     @Override
@@ -58,7 +63,7 @@ public class UserServiceImpl implements UserService{
 
         if(entity.getPassword().equals(form.getTempPwd())){
             entity.setPassword(form.getNewPwd());
-            entity.setAccountStatus("UnLocked");
+            entity.setAccountStatus("UNLOCKED");
             userDtlsRepo.save(entity);
             return true;
         }else {
@@ -66,19 +71,32 @@ public class UserServiceImpl implements UserService{
         }
     }
 
+
+    @Override
+    public String login(LoginForm form) {
+        UserDtlsEntity entity = userDtlsRepo.findByEmailAndPassword(form.getEmail(), form.getPassword());
+
+        //When credential does not match
+        if(entity==null){
+            return "Invalid Credentials";
+        }
+
+        //When credentials match but account is in LOCKED status
+        if(entity.getAccountStatus().equals("LOCKED")){
+            return "Your Account Locked";
+        }
+
+        //When account is in UNLOCKED status
+        return "success";
+    }
+
+
     @Override
     public String forgotPwd(String email) {
         return "";
     }
 
-    @Autowired
-    private UserDtlsRepository userDtlsRepo;
 
-    @Autowired
-    private EmailUtils emailUtils;
 
-    @Override
-    public String login(LoginForm form) {
-        return "";
-    }
+
 }
