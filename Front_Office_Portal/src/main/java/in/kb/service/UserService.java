@@ -11,6 +11,5 @@ public interface UserService {
 
     public String login(LoginForm form);
 
-
-    public String forgotPwd(String email);
+    public boolean forgotPwd(String email);
 }

@@ -93,12 +93,24 @@ public class UserController {
         return "login";
     }
 
-
-
-
-
     @GetMapping("/forgotPwd")
     public String forgotPwdPage() {
+        return "forgotPwd";
+    }
+
+    @PostMapping("/forgotPwd")
+    public String forgotPwd(@RequestParam("email") String email, Model model) {
+        System.out.println(email);
+
+        //TODO: Logic
+        boolean status = userService.forgotPwd(email);
+        if(status){
+            //Send success message
+            model.addAttribute("succMsg", "Password sent to your email");
+        }else {
+            //Send error message
+            model.addAttribute("errMsg","Invalid Email");
+        }
         return "forgotPwd";
     }
 

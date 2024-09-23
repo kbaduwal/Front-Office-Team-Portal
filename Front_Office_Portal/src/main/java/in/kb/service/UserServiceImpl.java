@@ -92,11 +92,22 @@ public class UserServiceImpl implements UserService{
 
 
     @Override
-    public String forgotPwd(String email) {
-        return "";
+    public boolean forgotPwd(String email) {
+        //Check whether data is present in DB with given email
+        UserDtlsEntity entity = userDtlsRepo.findByEmail(email);
+
+        // If record not available return false
+        if (entity == null){
+            return false;
+        }
+
+        // If record available send PWD to email and return true
+        String subject="Recover Password";
+        String body = "Your password :: "+entity.getPassword();
+        emailUtils.sendEmail(email, subject, body);
+
+
+        return true;
     }
-
-
-
 
 }

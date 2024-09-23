@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="www.thymeleaf.org">
 
 <head>
 <meta charset="UTF-8" />
@@ -83,19 +83,21 @@
 										<h4 class="mt-1 mb-5 pb-1"></h4>
 									</div>
 
-									<form>
+									<p th:text="${succMsg}" class="text-success" />
+									<p th:text="${errMsg}" class="text-danger" />
+
+									<form th:action="@{/forgotPwd}" method="POST">
 										<p>Recover Your Password</p>
 
 										<div class="form-outline mb-4">
 											<input type="email" id="form2Example11" class="form-control"
-												placeholder="email address" /> <label
+												placeholder="email address" name="email"/> <label
 												class="form-label" for="form2Example11">Email</label>
 										</div>
 
 										<div class="text-center pt-1 mb-5 pb-1">
-											<a href="#"
-												class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3"
-												type="button">Submit</a>
+											<input type="submit" value="Submit"
+												class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" />
 										</div>
 
 										<div
