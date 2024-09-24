@@ -7,6 +7,7 @@ import in.kb.entity.UserDtlsEntity;
 import in.kb.repo.UserDtlsRepository;
 import in.kb.util.EmailUtils;
 import in.kb.util.PasswordUtils;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,6 +20,9 @@ public class UserServiceImpl implements UserService{
 
     @Autowired
     private EmailUtils emailUtils;
+
+    @Autowired
+    private HttpSession session;
 
 
     @Override
@@ -80,11 +84,15 @@ public class UserServiceImpl implements UserService{
         if(entity==null){
             return "Invalid Credentials";
         }
-
         //When credentials match but account is in LOCKED status
         if(entity.getAccountStatus().equals("LOCKED")){
             return "Your Account Locked";
         }
+
+        //Create a Session  and store user data in Session
+        session.setAttribute("userId",entity.getUserId());
+
+
 
         //When account is in UNLOCKED status
         return "success";

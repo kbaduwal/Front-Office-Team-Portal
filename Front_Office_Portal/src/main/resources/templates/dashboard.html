@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="www.thymeleaf.org">
 
 <head>
 <meta charset="UTF-8" />
@@ -33,10 +33,10 @@
 						aria-current="page" href="dashboard">Home</a></li>
 					<li class="nav-item"><a class="nav-link" href="enquiry">Add
 							Enquiry</a></li>
-					<li class="nav-item"><a class="nav-link" href="enquiries">View
+					<li class="nav-item"><a class="nav-link" href="view">View
 							Enquiries</a></li>
 				</ul>
-				<a href="/" class="btn btn-danger">Logout</a>
+				<a href="logout" class="btn btn-danger">Logout</a>
 			</div>
 		</div>
 	</nav>
@@ -57,9 +57,9 @@
 										<h4 class="mt-1 mb-5 pb-1">Your Performance</h4>
 									</div>
 
-									<h2>Total Enquiries : 256 </h2>
-									<h2 class="text-success">Enrolled : 84 </h2>
-									<h2 class="text-danger">Lost : 172</h2>
+									<h2>Total Enquiries : <p th:text="${dashBoardData.totalEnquiriesSent}" />  </h2>
+									<h2 class="text-success">Enrolled :  <p th:text="${dashBoardData.enrolledCnt}" />  </h2>
+									<h2 class="text-danger">Lost :  <p th:text="${dashBoardData.lostCnt}" />  </h2>
 
 								</div>
 							</div>
