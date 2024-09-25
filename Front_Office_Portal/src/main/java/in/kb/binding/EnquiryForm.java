@@ -7,11 +7,11 @@ public class EnquiryForm {
 
     private String studentName;
 
-    private String studentPhno;
+    private String phoneNumber;
 
     private String classMode;
 
     private String courseName;
 
-    private String enqStatus;
+    private String enquiryStatus;
 }

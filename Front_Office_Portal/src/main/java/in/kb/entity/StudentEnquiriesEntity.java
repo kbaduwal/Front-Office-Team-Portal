@@ -32,6 +32,7 @@ public class StudentEnquiriesEntity {
     @UpdateTimestamp
     Date updatedDate;
 
+    //Multiple enquiries(Student registration) belongs to one user
     @ManyToOne
     @JoinColumn(name = "userId")
     private UserDtlsEntity user;

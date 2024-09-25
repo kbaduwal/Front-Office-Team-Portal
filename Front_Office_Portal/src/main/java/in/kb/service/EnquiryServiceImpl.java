@@ -8,7 +8,10 @@ import in.kb.entity.StudentEnquiriesEntity;
 import in.kb.entity.UserDtlsEntity;
 import in.kb.repo.CourseRepository;
 import in.kb.repo.EnquiryStatusRepository;
+import in.kb.repo.StudentEnquiriesRepository;
 import in.kb.repo.UserDtlsRepository;
+import jakarta.servlet.http.HttpSession;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,6 +32,12 @@ public class EnquiryServiceImpl implements EnquiryService{
     @Autowired
     private EnquiryStatusRepository statusRepo;
 
+    @Autowired
+    private StudentEnquiriesRepository enqRepo;
+
+    @Autowired
+    private HttpSession session;
+
     @Override
     public DashBoardResponse getDashBoardData(Integer userId) {
         DashBoardResponse response = new DashBoardResponse();
@@ -43,11 +52,11 @@ public class EnquiryServiceImpl implements EnquiryService{
             Integer totalCnt = enquiries.size();
 
             Integer enrolledCnt = enquiries.stream()
-                    .filter(e -> e.getEnquiryStatus().equals("ENROLLED"))
+                    .filter(e -> e.getEnquiryStatus().equals("Enrolled"))
                     .collect(Collectors.toList()).size();
 
             Integer lostCnt = enquiries.stream()
-                    .filter(e -> e.getEnquiryStatus().equals("LOST"))
+                    .filter(e -> e.getEnquiryStatus().equals("Lost"))
                     .collect(Collectors.toList()).size();
 
             response.setTotalEnquiriesSent(totalCnt);
@@ -87,6 +96,18 @@ public class EnquiryServiceImpl implements EnquiryService{
 
     @Override
     public boolean saveEnquiry(EnquiryForm form) {
-        return false;
+        //TODO: Copy data from binding object to entity object
+        StudentEnquiriesEntity enqEntity = new StudentEnquiriesEntity();
+        BeanUtils.copyProperties(form,enqEntity);
+
+        //To get to know which user is inserting the data
+        Integer userId = (Integer) session.getAttribute("userId");
+
+        UserDtlsEntity userEntity = userDtlsRepo.findById(userId).get();
+        enqEntity.setUser(userEntity);
+
+        enqRepo.save(enqEntity);
+
+        return true;
     }
 }

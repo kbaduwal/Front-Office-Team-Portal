@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
@@ -35,6 +37,29 @@ public class EnquiryController {
         model.addAttribute("dashBoardData",dashBoardData);
 
         return "dashboard";
+    }
+
+    @PostMapping("/addEnq")
+    public String addEnquiry(@ModelAttribute("formObj") EnquiryForm formObj, Model model){
+        System.out.println(formObj);
+        //Todo: Save the data
+        boolean status= enquiryService.saveEnquiry(formObj);
+
+        if(status){
+            model.addAttribute("succMsg", "Enquiry Added");
+        }else {
+            model.addAttribute("errMsg", "Problem Occurred");
+        }
+        //Get courses for the dropdown
+        List<String> courses = enquiryService.getCourses();
+
+        //Get enq status for the dropdown
+        List<String> enqStatuses = enquiryService.getEnqStatus();
+        //Set data in Model object
+        model.addAttribute("coursesNames", courses);
+        model.addAttribute("enqStatusesNames", enqStatuses);
+
+        return "add-enquiry";
     }
 
     @GetMapping("/enquiry")
