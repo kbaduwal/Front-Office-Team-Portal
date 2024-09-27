@@ -3,6 +3,7 @@ package in.kb.service;
 import in.kb.binding.LoginForm;
 import in.kb.binding.SignUpForm;
 import in.kb.binding.UnlockForm;
+import in.kb.constants.AppConstants;
 import in.kb.entity.UserDtlsEntity;
 import in.kb.repo.UserDtlsRepository;
 import in.kb.util.EmailUtils;
@@ -42,15 +43,15 @@ public class UserServiceImpl implements UserService{
         entity.setPassword(tempPwd);
 
         //TODO: set account status as LOCKED
-        entity.setAccountStatus("LOCKED");
+        entity.setAccountStatus(AppConstants.STR_LOCKED);
 
         //TODO: Insert record
         userDtlsRepo.save(entity);
 
         //TODO: Send email to user to unlock the account
         String to = form.getEmail();
-        String subject = "Unlock Your Account";
-        StringBuffer body = new StringBuffer("");
+        String subject = AppConstants.UNLOCK_EMAIL_SUBJECT;
+        StringBuffer body = new StringBuffer(AppConstants.STR_EMPTY);
         body.append("Temporary Password: "+tempPwd);
         body.append("<br/>");
         body.append("<a href=\"http://localhost:8080/unlock?email=" + to + "\">Click here to unlock the account</a>");
@@ -67,7 +68,7 @@ public class UserServiceImpl implements UserService{
 
         if(entity.getPassword().equals(form.getTempPwd())){
             entity.setPassword(form.getNewPwd());
-            entity.setAccountStatus("UNLOCKED");
+            entity.setAccountStatus(AppConstants.STR_UNLOCKED);
             userDtlsRepo.save(entity);
             return true;
         }else {
@@ -82,20 +83,20 @@ public class UserServiceImpl implements UserService{
 
         //When credential does not match
         if(entity==null){
-            return "Invalid Credentials";
+            return AppConstants.INVALID_CREDENTIAL;
         }
         //When credentials match but account is in LOCKED status
-        if(entity.getAccountStatus().equals("LOCKED")){
-            return "Your Account Locked";
+        if(entity.getAccountStatus().equals(AppConstants.STR_LOCKED)){
+            return AppConstants.ACCOUNT_LOCKED;
         }
 
         //Create a Session  and store user data in Session
-        session.setAttribute("userId",entity.getUserId());
+        session.setAttribute(AppConstants.STR_USERID,entity.getUserId());
 
 
 
         //When account is in UNLOCKED status
-        return "success";
+        return AppConstants.SUCCESS_MESSAGE;
     }
 
 
@@ -110,8 +111,8 @@ public class UserServiceImpl implements UserService{
         }
 
         // If record available send PWD to email and return true
-        String subject="Recover Password";
-        String body = "Your password :: "+entity.getPassword();
+        String subject=AppConstants.RECOVER_PASSWORD_EMAIL_SUBJECT;
+        String body = AppConstants.YOUR_PASSWORD +entity.getPassword();
         emailUtils.sendEmail(email, subject, body);
 
 

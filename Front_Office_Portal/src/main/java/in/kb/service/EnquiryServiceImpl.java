@@ -3,6 +3,7 @@ package in.kb.service;
 import in.kb.binding.DashBoardResponse;
 import in.kb.binding.EnquiryForm;
 import in.kb.binding.EnquirySearchCriteria;
+import in.kb.constants.AppConstants;
 import in.kb.entity.CoursesEntity;
 import in.kb.entity.EnquiryStatusEntity;
 import in.kb.entity.StudentEnquiriesEntity;
@@ -102,7 +103,7 @@ public class EnquiryServiceImpl implements EnquiryService{
         BeanUtils.copyProperties(form,enqEntity);
 
         //To get to know which user is inserting the data
-        Integer userId = (Integer) session.getAttribute("userId");
+        Integer userId = (Integer) session.getAttribute(AppConstants.STR_USERID);
 
         UserDtlsEntity userEntity = userDtlsRepo.findById(userId).get();
         enqEntity.setUser(userEntity);
@@ -114,7 +115,7 @@ public class EnquiryServiceImpl implements EnquiryService{
 
     @Override
     public List<StudentEnquiriesEntity> getEnquiries() {
-        Integer userId = (Integer) session.getAttribute("userId");
+        Integer userId = (Integer) session.getAttribute(AppConstants.STR_USERID);
         Optional<UserDtlsEntity> findById = userDtlsRepo.findById(userId);
         if(findById.isPresent()){
             UserDtlsEntity userDtlsEntity = findById.get();
@@ -141,14 +142,14 @@ public class EnquiryServiceImpl implements EnquiryService{
 
             }
 
-            if(null != criteria.getEnquiryStatus() && !"".equals(criteria.getEnquiryStatus()) )
+            if(null != criteria.getEnquiryStatus() && !AppConstants.STR_EMPTY.equals(criteria.getEnquiryStatus()) )
             {
                 enquiries = enquiries.stream()
                         .filter(e -> e.getEnquiryStatus().equals(criteria.getEnquiryStatus()))
                         .collect(Collectors.toList());
             }
 
-            if(null != criteria.getClassMode() && !"".equals(criteria.getClassMode()) )
+            if(null != criteria.getClassMode() && !AppConstants.STR_EMPTY.equals(criteria.getClassMode()) )
             {
                 enquiries = enquiries.stream()
                         .filter(e -> e.getClassMode().equals(criteria.getClassMode()))

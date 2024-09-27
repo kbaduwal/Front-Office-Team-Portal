@@ -3,6 +3,7 @@ package in.kb.controllers;
 import in.kb.binding.DashBoardResponse;
 import in.kb.binding.EnquiryForm;
 import in.kb.binding.EnquirySearchCriteria;
+import in.kb.constants.AppConstants;
 import in.kb.entity.StudentEnquiriesEntity;
 import in.kb.service.EnquiryService;
 import jakarta.servlet.http.HttpSession;
@@ -33,7 +34,7 @@ public class EnquiryController {
 
     @GetMapping("/dashboard")
     public String dashboardPage(Model model){
-         Integer userId = (Integer) session.getAttribute("userId");
+         Integer userId = (Integer) session.getAttribute(AppConstants.STR_USERID);
 
         //Todo: Logic to fetch data for dashboard
         DashBoardResponse dashBoardData = enquiryService.getDashBoardData(userId);
@@ -120,7 +121,7 @@ public class EnquiryController {
         criteria.setClassMode(mode);
         criteria.setEnquiryStatus(status);
 
-        Integer userId = (Integer) session.getAttribute("userId");
+        Integer userId = (Integer) session.getAttribute(AppConstants.STR_USERID);
 
 
         List<StudentEnquiriesEntity> filteredEnqs = enquiryService.getFilteredEnqs(criteria, userId);
